@@ -12,6 +12,7 @@
 
     <v-main>
       <v-container class="mt-3">
+        <CreateNote />
         <Notes />
       </v-container>
     </v-main>
@@ -19,12 +20,14 @@
 </template>
 
 <script>
+import CreateNote from '@/components/CreateNote';
 import Notes from '@/components/Notes';
 
 export default {
   name: 'App',
 
   components: {
+    CreateNote,
     Notes
   },
 
