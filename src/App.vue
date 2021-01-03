@@ -11,16 +11,22 @@
     </v-app-bar>
 
     <v-main>
-      <!-- Where notes will be added -->
+      <v-container class="mt-3">
+        <Notes />
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import Notes from '@/components/Notes';
+
 export default {
   name: 'App',
 
-  components: {},
+  components: {
+    Notes
+  },
 
   data: () => ({})
 };
