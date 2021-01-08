@@ -12,23 +12,12 @@
 </template>
 
 <script>
-import db from '@/firebase/firebase';
 export default {
   name: 'NoteItem',
-  data: () => ({
-    notes: []
-  }),
-  created() {
-    this.getNotes();
+  async created() {
+    await this.$store.dispatch('fetchNotes');
+    console.log(this.$store.getters.getAllNotes);
   },
-  methods: {
-    async getNotes() {
-      const notes = db.collection('notes');
-      const snapshot = await notes.get();
-      snapshot.forEach((doc) => {
-        console.log(doc.id, '=>', doc.data());
-      });
-    }
-  }
+  methods: {}
 };
 </script>
