@@ -9,12 +9,17 @@ export default new Vuex.Store({
     notes: []
   },
   mutations: {
-    setNotes: (state, notes) => (state.notes = notes)
+    setNotes: (state, notes) => (state.notes = notes),
+    newNote: (state, note) => state.notes.unshift(note)
   },
   actions: {
     async fetchNotes({ commit }) {
       const notes = await db.getNotes();
       commit('setNotes', notes);
+    },
+    async createNote({ commit }, data) {
+      const note = await db.addNote(data);
+      commit('newNote', note);
     }
   },
   getters: {

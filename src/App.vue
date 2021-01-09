@@ -14,6 +14,7 @@
       <v-container class="mt-3">
         <CreateNote />
         <Notes />
+        <!-- <v-snackbar v-model="snackbar.open" :color="snackbar.color">{{ snackbar.text }}</v-snackbar> -->
       </v-container>
     </v-main>
   </v-app>

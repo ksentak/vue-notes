@@ -31,7 +31,8 @@
         <v-card-actions v-show="actionsVisible">
           <!-- <ColorPickerMenu @color-selected="colorSelected" :selected="newNote.color" /> -->
           <v-spacer></v-spacer>
-          <v-btn text @click="close">Close</v-btn>
+          <v-btn text @click="close()">Close</v-btn>
+          <v-btn text @click="save()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -39,7 +40,6 @@
 </template>
 
 <script>
-import db from '@/firebase/firebase';
 export default {
   name: 'CreateNote',
   data: () => ({
@@ -52,31 +52,48 @@ export default {
     actionsVisible: false
   }),
   methods: {
-    async createNote() {
-      const notes = db.collection('notes');
-      const newDoc = await notes.add(this.newNote);
-      return {
-        id: newDoc.id,
-        ...this.newNote
-      };
+    async createNote(newNote) {
+      await this.$store.dispatch('createNote', newNote);
     },
-    async close() {
-      this.hideTitleFieldAndActions();
-
-      if (this.newNote.title || this.newNote.content) {
+    async save() {
+      if (this.newNote.title && this.newNote.content) {
         await this.createNote(this.newNote);
-        this.showSnackbar({
-          open: true,
-          text: 'Note saved',
-          color: 'success'
-        });
+        console.log('success');
+        // this.showSnackbar({
+        //   open: true,
+        //   text: 'Note Saved',
+        //   color: 'success'
+        // });
+      } else {
+        console.log('fail');
+        // this.showSnackbar({
+        //   open: true,
+        //   text: 'Make sure both fields are complete',
+        //   color: ''
+        // });
       }
+    },
+    close() {
+      this.hideTitleFieldAndActions();
+      //this.showSnackbar({});
 
-      this.note = {
+      // if (this.newNote.title || this.newNote.content) {
+      //   await this.createNote(this.newNote);
+      //   this.showSnackbar({
+      //     open: true,
+      //     text: 'Note saved',
+      //     color: 'success'
+      //   });
+      // }
+
+      this.newNote = {
         title: '',
         content: '',
         color: 'none'
       };
+    },
+    showSnackbar(snackbar) {
+      this.snackbar = !snackbar;
     },
     showTitleFieldAndActions() {
       this.titleFieldVisible = true;

@@ -15,7 +15,7 @@
           {{ noteItem.title }}
           <v-spacer></v-spacer>
           <v-btn icon :ripple="false">
-            <v-icon v-show="showEditIcon">mdi-pencil-outline</v-icon>
+            <!-- <v-icon v-show="showEditIcon">mdi-pencil-outline</v-icon> -->
           </v-btn>
         </v-card-title>
         <v-card-text>{{ noteItem.content }}</v-card-text>

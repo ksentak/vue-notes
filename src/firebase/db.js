@@ -15,4 +15,10 @@ const getNotes = async () => {
   });
 };
 
-export { getNotes };
+const addNote = async (data) => {
+  const res = await noteCollection.add(data);
+  console.log(res);
+  return res;
+};
+
+export { getNotes, addNote };
