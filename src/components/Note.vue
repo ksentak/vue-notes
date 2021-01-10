@@ -5,7 +5,7 @@
     class="flex d-flex flex-column"
     @mouseenter="toggleEditIcon()"
     @mouseleave="toggleEditIcon()"
-    @click="viewNote()"
+    @click="openNoteModal()"
   >
     <v-card-title>
       {{ this.title }}
@@ -28,19 +28,16 @@ export default {
     color: String
   },
   data: () => ({
-    // noteItems: [],
+    dialog: false,
     showEditIcon: false
   }),
-  // async created() {
-  //   await this.$store.dispatch('fetchNotes');
-  //   this.noteItems = this.$store.getters.getAllNotes;
-  // },
   methods: {
     toggleEditIcon() {
       this.showEditIcon = !this.showEditIcon;
     },
-    viewNote() {
+    openNoteModal() {
       console.log('clicked', this.id);
+      this.$store.commit('setShowNoteDialog', true);
     }
   }
 };

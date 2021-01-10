@@ -6,16 +6,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    notes: []
+    notes: [],
     // snackbar: {
     //   open: false,
     //   color: '',
     //   text: ''
     // }
+    showNoteDialog: false
   },
   mutations: {
     setNotes: (state, notes) => (state.notes = notes),
-    newNote: (state, note) => state.notes.unshift(note)
+    newNote: (state, note) => state.notes.unshift(note),
+    setShowNoteDialog: (state, payload) => (state.showNoteDialog = payload)
     // showSnackbar: (state, payload) => (state.snackbar = payload)
   },
   actions: {
@@ -29,6 +31,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    getAllNotes: (state) => state.notes
+    getAllNotes: (state) => state.notes,
+    getShowNoteDialog: (state) => state.showNoteDialog
   }
 });
