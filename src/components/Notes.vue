@@ -10,30 +10,30 @@
       v-for="noteItem in noteItems"
       :key="noteItem.id"
     >
-      <v-card outlined hover class="flex d-flex flex-column">
-        <v-card-title>
-          {{ noteItem.title }}
-          <v-spacer></v-spacer>
-          <v-btn icon :ripple="false">
-            <!-- <v-icon v-show="showEditIcon">mdi-pencil-outline</v-icon> -->
-          </v-btn>
-        </v-card-title>
-        <v-card-text>{{ noteItem.content }}</v-card-text>
-      </v-card>
+      <Note
+        :id="noteItem.id"
+        :title="noteItem.title"
+        :content="noteItem.content"
+        :color="noteItem.color"
+      />
     </v-col>
   </v-row>
 </template>
 
 <script>
+import Note from './Note';
+
 export default {
   name: 'Notes',
+  components: {
+    Note
+  },
   data: () => ({
     noteItems: []
   }),
   async created() {
     await this.$store.dispatch('fetchNotes');
     this.noteItems = this.$store.getters.getAllNotes;
-  },
-  methods: {}
+  }
 };
 </script>
