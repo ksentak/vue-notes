@@ -7,10 +7,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     notes: []
+    // snackbar: {
+    //   open: false,
+    //   color: '',
+    //   text: ''
+    // }
   },
   mutations: {
     setNotes: (state, notes) => (state.notes = notes),
     newNote: (state, note) => state.notes.unshift(note)
+    // showSnackbar: (state, payload) => (state.snackbar = payload)
   },
   actions: {
     async fetchNotes({ commit }) {

@@ -14,7 +14,16 @@
       <v-container class="mt-3">
         <CreateNote />
         <Notes />
-        <!-- <v-snackbar v-model="snackbar.open" :color="snackbar.color">{{ snackbar.text }}</v-snackbar> -->
+        <!-- <v-snackbar
+          v-model="this.$store.state.snackbar.open"
+          :color="this.$store.state.snackbar.color"
+          >{{ this.$store.state.snackbar.text }}
+          <template v-slot:action="{ attrs }">
+            <v-btn color="white" text v-bind="attrs" @click="resetSnackbar()">
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar> -->
       </v-container>
     </v-main>
   </v-app>
@@ -26,12 +35,25 @@ import Notes from '@/components/Notes';
 
 export default {
   name: 'App',
-
   components: {
     CreateNote,
     Notes
   },
-
-  data: () => ({})
+  data: () => ({
+    // snackbar: {
+    //   open: false,
+    //   color: '',
+    //   text:''
+    // }
+  }),
+  methods: {
+    // resetSnackbar() {
+    //   const snackbar = {
+    //     open: false,
+    //     text: ''
+    //   };
+    //   this.$store.commit('showSnackbar', snackbar);
+    // }
+  }
 };
 </script>

@@ -58,7 +58,9 @@ export default {
     async save() {
       if (this.newNote.title && this.newNote.content) {
         await this.createNote(this.newNote);
-        console.log('success');
+        this.hideTitleFieldAndActions();
+        this.resetForm();
+
         // this.showSnackbar({
         //   open: true,
         //   text: 'Note Saved',
@@ -75,26 +77,23 @@ export default {
     },
     close() {
       this.hideTitleFieldAndActions();
-      //this.showSnackbar({});
-
-      // if (this.newNote.title || this.newNote.content) {
-      //   await this.createNote(this.newNote);
-      //   this.showSnackbar({
-      //     open: true,
-      //     text: 'Note saved',
-      //     color: 'success'
-      //   });
-      // }
-
+      this.resetForm();
+      // this.changeSnackbar({
+      //   open: true,
+      //   color: 'error',
+      //   text: 'Closed'
+      // });
+    },
+    resetForm() {
       this.newNote = {
         title: '',
         content: '',
         color: 'none'
       };
     },
-    showSnackbar(snackbar) {
-      this.snackbar = !snackbar;
-    },
+    // changeSnackbar(snackbar) {
+    //   this.$store.commit('showSnackbar', snackbar);
+    // },
     showTitleFieldAndActions() {
       this.titleFieldVisible = true;
       this.actionsVisible = true;
