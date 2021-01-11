@@ -12,7 +12,7 @@
             <v-btn
               icon
               :color="`${name !== 'Default' ? value : ''}`"
-              @click="colorSelected(name)"
+              @click="colorSelected(value)"
               v-bind="attrs"
               v-on="on"
             >
@@ -45,8 +45,6 @@ export default {
       Purple: 'purple lighten-4',
       Pink: 'pink lighten-4'
     }
-    // selected: ''
-    // open: false
   }),
   computed: {
     open: {
@@ -66,6 +64,7 @@ export default {
     },
     colorSelected(color) {
       this.$emit('color-selected', color);
+      return color;
     }
   }
 };

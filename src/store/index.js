@@ -31,6 +31,12 @@ export default new Vuex.Store({
       console.log(state.notes);
     },
     setSelectedNote: (state, payload) => (state.selectedNote = payload),
+    setNoteField: (state, payload) => {
+      state.selectedNote = {
+        ...state.selectedNote,
+        [payload.name]: payload.value
+      };
+    },
     setShowNoteDialog: (state, payload) => (state.showNoteDialog = payload),
     setShowColorMenu: (state, payload) => (state.showColorMenu = payload)
 

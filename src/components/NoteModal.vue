@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" max-width="500">
-    <v-card>
+    <v-card :color="selectedNote.color">
       <div class="pa-2">
         <v-text-field
           v-model="selectedNote.title"
@@ -85,7 +85,11 @@ export default {
       this.$store.commit('setShowNoteDialog', false);
     },
     colorSelected(color) {
-      console.log(color);
+      const newColor = {
+        name: 'color',
+        value: color
+      };
+      this.$store.commit('setNoteField', newColor);
     }
   }
 };
