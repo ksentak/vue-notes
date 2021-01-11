@@ -1,6 +1,7 @@
 <template>
   <v-card
     outlined
+    :color="this.color"
     hover
     class="flex d-flex flex-column"
     @mouseenter="toggleEditIcon()"

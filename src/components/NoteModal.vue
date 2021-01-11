@@ -28,7 +28,7 @@
         <v-btn icon @click="deleteNote()" :loading="deleteLoading">
           <v-icon>mdi-delete-outline</v-icon>
         </v-btn>
-        <!-- <ColorPickerMenu @color-selected="colorSelected" :selected="selectedNote.color" /> -->
+        <ColorPicker @color-selected="colorSelected" :selected="selectedNote.color" />
         <v-spacer></v-spacer>
         <v-btn text @click="cancelDialog()">Close</v-btn>
         <v-btn text @click="updateNote()">Save</v-btn>
@@ -38,8 +38,13 @@
 </template>
 
 <script>
+import ColorPicker from './ColorPicker';
+
 export default {
   name: 'NoteModal',
+  components: {
+    ColorPicker
+  },
   data: () => ({
     loading: false,
     deleteLoading: false
@@ -57,16 +62,9 @@ export default {
       get: function() {
         return this.$store.getters.getSelectedNote;
       }
-      // set: function(payload) {
-
-      //   this.$store.commit('updateSelectedNote', payload);
-      // }
     }
   },
   methods: {
-    cancelDialog() {
-      this.$store.commit('setShowNoteDialog', false);
-    },
     async updateNote() {
       this.loading = true;
       const editedNote = this.selectedNote;
@@ -82,6 +80,12 @@ export default {
       await this.$store.dispatch('discardNote', selectedNoteId);
       this.deleteLoading = false;
       this.cancelDialog();
+    },
+    cancelDialog() {
+      this.$store.commit('setShowNoteDialog', false);
+    },
+    colorSelected(color) {
+      console.log(color);
     }
   }
 };
