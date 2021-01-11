@@ -16,8 +16,14 @@ export default new Vuex.Store({
     showNoteDialog: false
   },
   mutations: {
-    setNotes: (state, notes) => (state.notes = notes),
     newNote: (state, note) => state.notes.unshift(note),
+    setNotes: (state, notes) => (state.notes = notes),
+    editNote: (state, updatedNote) => {
+      const index = state.notes.findIndex((note) => note.id === updatedNote.id);
+      if (index !== -1) {
+        state.notes.splice(index, 1, updatedNote);
+      }
+    },
     removeNote: (state, id) => {
       const newArray = state.notes.filter((note) => note.id != id);
       state.notes = newArray;
@@ -28,14 +34,22 @@ export default new Vuex.Store({
     // showSnackbar: (state, payload) => (state.snackbar = payload)
   },
   actions: {
-    async fetchNotes({ commit }) {
-      const notes = await db.getNotes();
-      commit('setNotes', notes);
-    },
+    // Create
     async createNote({ commit }, data) {
       const note = await db.addNote(data);
       commit('newNote', note);
     },
+    // Read
+    async fetchNotes({ commit }) {
+      const notes = await db.getNotes();
+      commit('setNotes', notes);
+    },
+    // Update
+    async updateNote({ commit }, note) {
+      const updatedNote = await db.updateNote(note);
+      commit('editNote', updatedNote);
+    },
+    // Delete
     async discardNote({ commit }, id) {
       const discardedNoteId = await db.deleteNote(id);
       commit('removeNote', discardedNoteId);

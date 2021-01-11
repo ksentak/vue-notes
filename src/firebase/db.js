@@ -2,7 +2,20 @@ import { db, timestamp } from './firebase';
 
 const noteCollection = db.collection('notes');
 
-// Grab all notes from firebase
+// Create a note
+const addNote = async (data) => {
+  const allData = {
+    timestamp: timestamp,
+    ...data
+  };
+  const newNote = await noteCollection.add(allData);
+  return {
+    id: newNote.id,
+    ...data
+  };
+};
+
+// Read all notes
 const getNotes = async () => {
   const snapshot = await noteCollection.orderBy('timestamp', 'desc').get();
   return snapshot.docs.map((doc) => {
@@ -16,23 +29,21 @@ const getNotes = async () => {
   });
 };
 
-// Add note to firebase
-const addNote = async (data) => {
-  const allData = {
-    timestamp: timestamp,
-    ...data
-  };
-  const newNote = await noteCollection.add(allData);
-  return {
-    id: newNote.id,
-    ...data
-  };
+// Update a note
+const updateNote = async (note) => {
+  await noteCollection.doc(note.id).update({
+    title: note.title,
+    content: note.content,
+    color: note.color,
+    timestamp: timestamp
+  });
+  return note;
 };
 
-// Delete note from firebase
+// Delete note
 const deleteNote = async (id) => {
   await noteCollection.doc(id).delete();
   return id;
 };
 
-export { getNotes, addNote, deleteNote };
+export { addNote, getNotes, updateNote, deleteNote };
