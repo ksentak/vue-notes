@@ -5,7 +5,10 @@
     class="flex d-flex flex-column"
     @mouseenter="toggleEditIcon()"
     @mouseleave="toggleEditIcon()"
-    @click="openNoteModal()"
+    @click="
+      openNoteModal();
+      setSelectedNote();
+    "
   >
     <v-card-title>
       {{ this.title }}
@@ -36,8 +39,16 @@ export default {
       this.showEditIcon = !this.showEditIcon;
     },
     openNoteModal() {
-      console.log('clicked', this.id);
       this.$store.commit('setShowNoteDialog', true);
+    },
+    setSelectedNote() {
+      const selectedNote = {
+        id: this.id,
+        title: this.title,
+        content: this.content,
+        color: this.color
+      };
+      this.$store.commit('setSelectedNote', selectedNote);
     }
   }
 };

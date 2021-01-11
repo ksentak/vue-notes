@@ -29,4 +29,10 @@ const addNote = async (data) => {
   };
 };
 
-export { getNotes, addNote };
+// Delete note from firebase
+const deleteNote = async (id) => {
+  await noteCollection.doc(id).delete();
+  return id;
+};
+
+export { getNotes, addNote, deleteNote };

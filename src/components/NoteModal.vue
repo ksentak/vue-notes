@@ -23,13 +23,13 @@
         ></v-textarea>
       </div>
       <v-card-actions>
-        <!-- <v-btn icon @click="deleteNote" :loading="deleteLoading">
+        <v-btn icon @click="deleteNote()" :loading="deleteLoading">
           <v-icon>mdi-delete-outline</v-icon>
-        </v-btn> -->
+        </v-btn>
         <!-- <ColorPickerMenu @color-selected="colorSelected" :selected="selectedNote.color" /> -->
         <v-spacer></v-spacer>
-        <!-- <v-btn text @click="setShowNoteDialog(false)">Close</v-btn> -->
-        <!-- <v-btn text @click="saveNote" :loading="loading">Save</v-btn> -->
+        <v-btn text @click="cancelDialog()">Close</v-btn>
+        <!-- <v-btn text @click="saveNote">Save</v-btn> -->
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -38,6 +38,10 @@
 <script>
 export default {
   name: 'NoteModal',
+  data: () => ({
+    loading: false,
+    deleteLoading: false
+  }),
   computed: {
     dialog: {
       get: function() {
@@ -46,6 +50,18 @@ export default {
       set: function(payload) {
         this.$store.commit('setShowNoteDialog', payload);
       }
+    }
+  },
+  methods: {
+    cancelDialog() {
+      this.$store.commit('setShowNoteDialog', false);
+    },
+    async deleteNote() {
+      this.deleteLoading = true;
+      const selectedNoteId = await this.$store.getters.getSelectedNote.id;
+      await this.$store.dispatch('discardNote', selectedNoteId);
+      this.deleteLoading = false;
+      this.cancelDialog();
     }
   }
 };
