@@ -29,7 +29,7 @@
           ></v-textarea>
         </div>
         <v-card-actions v-show="actionsVisible">
-          <!-- <ColorPickerMenu @color-selected="colorSelected" :selected="newNote.color" /> -->
+          <ColorPicker @color-selected="colorSelected" :selected="newNote.color" />
           <v-spacer></v-spacer>
           <v-btn text @click="close()">Close</v-btn>
           <v-btn text @click="save()">Save</v-btn>
@@ -40,8 +40,13 @@
 </template>
 
 <script>
+import ColorPicker from './ColorPicker';
+
 export default {
   name: 'CreateNote',
+  components: {
+    ColorPicker
+  },
   data: () => ({
     newNote: {
       color: 'none',
@@ -101,6 +106,14 @@ export default {
     hideTitleFieldAndActions() {
       this.titleFieldVisible = false;
       this.actionsVisible = false;
+    },
+    colorSelected(color) {
+      console.log(color);
+      // const newColor = {
+      //   name: 'color',
+      //   value: color
+      // };
+      // this.$store.commit('setNoteField', newColor);
     }
   }
 };
