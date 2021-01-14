@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col cols="12" md="8" lg="6" xl="4">
+    <v-col cols="12" md="8" lg="6" xl="4" v-click-outside="closeMenu">
       <v-card :color="newNote.color">
         <div class="pa-2">
           <v-text-field
@@ -109,6 +109,11 @@ export default {
     },
     colorSelected(color) {
       this.newNote.color = color;
+    },
+    closeMenu() {
+      if (!this.$store.getters.getIsColorMenuOpen) {
+        this.close();
+      }
     }
   }
 };
