@@ -61,7 +61,7 @@ export default {
       await this.$store.dispatch('createNote', newNote);
     },
     async save() {
-      if (this.newNote.title && this.newNote.content) {
+      if (this.newNote.title || this.newNote.content) {
         await this.createNote(this.newNote);
         this.hideTitleFieldAndActions();
         this.resetForm();

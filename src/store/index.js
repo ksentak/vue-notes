@@ -26,9 +26,8 @@ export default new Vuex.Store({
       }
     },
     removeNote: (state, id) => {
-      const newArray = state.notes.filter((note) => note.id != id);
-      state.notes = newArray;
-      console.log(state.notes);
+      const updatedNotes = state.notes.filter((note) => note.id !== id);
+      state.notes = updatedNotes;
     },
     setSelectedNote: (state, payload) => (state.selectedNote = payload),
     setNoteField: (state, payload) => {

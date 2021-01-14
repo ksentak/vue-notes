@@ -7,15 +7,10 @@
       lg="3"
       xl="2"
       class="d-flex flex-column"
-      v-for="noteItem in noteItems"
-      :key="noteItem.id"
+      v-for="note in notes"
+      :key="note.id"
     >
-      <Note
-        :id="noteItem.id"
-        :title="noteItem.title"
-        :content="noteItem.content"
-        :color="noteItem.color"
-      />
+      <Note :id="note.id" :title="note.title" :content="note.content" :color="note.color" />
     </v-col>
   </v-row>
 </template>
@@ -28,12 +23,13 @@ export default {
   components: {
     Note
   },
-  data: () => ({
-    noteItems: []
-  }),
+  computed: {
+    notes() {
+      return this.$store.getters.getAllNotes;
+    }
+  },
   async created() {
     await this.$store.dispatch('fetchNotes');
-    this.noteItems = this.$store.getters.getAllNotes;
   }
 };
 </script>

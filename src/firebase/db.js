@@ -34,8 +34,7 @@ const updateNote = async (note) => {
   await noteCollection.doc(note.id).update({
     title: note.title,
     content: note.content,
-    color: note.color,
-    timestamp: timestamp
+    color: note.color
   });
   return note;
 };
