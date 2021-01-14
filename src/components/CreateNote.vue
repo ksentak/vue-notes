@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
-    <v-col cols="12" md="8" lg="6" xl="4" v-click-outside="close()">
-      <v-card>
+    <v-col cols="12" md="8" lg="6" xl="4">
+      <v-card :color="newNote.color">
         <div class="pa-2">
           <v-text-field
             v-model="newNote.title"
@@ -108,18 +108,8 @@ export default {
       this.actionsVisible = false;
     },
     colorSelected(color) {
-      console.log(color);
-      // const newColor = {
-      //   name: 'color',
-      //   value: color
-      // };
-      // this.$store.commit('setNoteField', newColor);
+      this.newNote.color = color;
     }
-    // onClickOutside() {
-    //   if (!this.$store.getters.getColorMenu) {
-    //     this.close();
-    //   }
-    // }
   }
 };
 </script>
