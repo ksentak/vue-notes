@@ -14,16 +14,14 @@
       <v-container class="mt-3">
         <CreateNote />
         <Notes />
-        <!-- <v-snackbar
-          v-model="this.$store.state.snackbar.open"
-          :color="this.$store.state.snackbar.color"
-          >{{ this.$store.state.snackbar.text }}
+        <v-snackbar v-model="snackbar.open" :color="snackbar.color"
+          >{{ snackbar.text }}
           <template v-slot:action="{ attrs }">
-            <v-btn color="white" text v-bind="attrs" @click="resetSnackbar()">
+            <v-btn color="white" text v-bind="attrs" @click="closeSnackbar()">
               Close
             </v-btn>
           </template>
-        </v-snackbar> -->
+        </v-snackbar>
         <NoteDialog />
       </v-container>
     </v-main>
@@ -42,21 +40,19 @@ export default {
     Notes,
     NoteDialog
   },
-  data: () => ({
-    // snackbar: {
-    //   open: false,
-    //   color: '',
-    //   text:''
-    // }
-  }),
+  computed: {
+    snackbar() {
+      return this.$store.getters.getSnackbar;
+    }
+  },
   methods: {
-    // resetSnackbar() {
-    //   const snackbar = {
-    //     open: false,
-    //     text: ''
-    //   };
-    //   this.$store.commit('showSnackbar', snackbar);
-    // }
+    closeSnackbar() {
+      const snackbar = {
+        open: false,
+        text: ''
+      };
+      this.$store.commit('showSnackbar', snackbar);
+    }
   }
 };
 </script>

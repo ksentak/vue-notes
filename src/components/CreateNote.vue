@@ -66,28 +66,16 @@ export default {
         this.hideTitleFieldAndActions();
         this.resetForm();
 
-        // this.showSnackbar({
-        //   open: true,
-        //   text: 'Note Saved',
-        //   color: 'success'
-        // });
+        const payload = { open: true, text: 'Note Saved', color: 'success' };
+        this.changeSnackbar(payload);
       } else {
-        console.log('fail');
-        // this.showSnackbar({
-        //   open: true,
-        //   text: 'Make sure both fields are complete',
-        //   color: ''
-        // });
+        const payload = { open: true, text: 'Uh oh something went wrong...', color: 'error' };
+        this.changeSnackbar(payload);
       }
     },
     close() {
       this.hideTitleFieldAndActions();
       this.resetForm();
-      // this.changeSnackbar({
-      //   open: true,
-      //   color: 'error',
-      //   text: 'Closed'
-      // });
     },
     resetForm() {
       this.newNote = {
@@ -96,9 +84,9 @@ export default {
         color: 'none'
       };
     },
-    // changeSnackbar(snackbar) {
-    //   this.$store.commit('showSnackbar', snackbar);
-    // },
+    changeSnackbar(payload) {
+      this.$store.commit('showSnackbar', payload);
+    },
     showTitleFieldAndActions() {
       this.titleFieldVisible = true;
       this.actionsVisible = true;
