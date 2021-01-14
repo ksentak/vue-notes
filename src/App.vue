@@ -24,7 +24,7 @@
             </v-btn>
           </template>
         </v-snackbar> -->
-        <NoteModal />
+        <NoteDialog />
       </v-container>
     </v-main>
   </v-app>
@@ -33,14 +33,14 @@
 <script>
 import CreateNote from '@/components/CreateNote';
 import Notes from '@/components/Notes';
-import NoteModal from '@/components/NoteModal';
+import NoteDialog from '@/components/NoteDialog';
 
 export default {
   name: 'App',
   components: {
     CreateNote,
     Notes,
-    NoteModal
+    NoteDialog
   },
   data: () => ({
     // snackbar: {

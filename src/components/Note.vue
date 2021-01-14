@@ -7,7 +7,7 @@
     @mouseenter="toggleEditIcon()"
     @mouseleave="toggleEditIcon()"
     @click="
-      openNoteModal();
+      openNoteDialog();
       setSelectedNote();
     "
   >
@@ -39,7 +39,7 @@ export default {
     toggleEditIcon() {
       this.showEditIcon = !this.showEditIcon;
     },
-    openNoteModal() {
+    openNoteDialog() {
       this.$store.commit('setShowNoteDialog', true);
     },
     setSelectedNote() {

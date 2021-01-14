@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col cols="12" md="8" lg="6" xl="4">
+    <v-col cols="12" md="8" lg="6" xl="4" v-click-outside="close()">
       <v-card>
         <div class="pa-2">
           <v-text-field

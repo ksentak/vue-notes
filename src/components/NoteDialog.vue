@@ -41,7 +41,7 @@
 import ColorPicker from './ColorPicker';
 
 export default {
-  name: 'NoteModal',
+  name: 'NoteDialog',
   components: {
     ColorPicker
   },
