@@ -13,8 +13,8 @@ export default new Vuex.Store({
     //   color: '',
     //   text: ''
     // }
-    showNoteDialog: false,
-    showColorMenu: false
+    showNoteDialog: false
+    // showColorMenu: false
   },
   mutations: {
     newNote: (state, note) => state.notes.unshift(note),
@@ -37,8 +37,8 @@ export default new Vuex.Store({
         [payload.name]: payload.value
       };
     },
-    setShowNoteDialog: (state, payload) => (state.showNoteDialog = payload),
-    setShowColorMenu: (state, payload) => (state.showColorMenu = payload)
+    setShowNoteDialog: (state, payload) => (state.showNoteDialog = payload)
+    // setShowColorMenu: (state, payload) => (state.showColorMenu = payload)
 
     // showSnackbar: (state, payload) => (state.snackbar = payload)
   },
@@ -67,7 +67,7 @@ export default new Vuex.Store({
   getters: {
     getAllNotes: (state) => state.notes,
     getSelectedNote: (state) => state.selectedNote,
-    getShowNoteDialog: (state) => state.showNoteDialog,
-    getShowColorMenu: (state) => state.showColorMenu
+    getShowNoteDialog: (state) => state.showNoteDialog
+    // getShowColorMenu: (state) => state.showColorMenu
   }
 });

@@ -115,6 +115,11 @@ export default {
       // };
       // this.$store.commit('setNoteField', newColor);
     }
+    // onClickOutside() {
+    //   if (!this.$store.getters.getColorMenu) {
+    //     this.close();
+    //   }
+    // }
   }
 };
 </script>

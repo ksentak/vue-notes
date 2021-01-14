@@ -68,8 +68,6 @@ export default {
     async updateNote() {
       this.loading = true;
       const editedNote = this.selectedNote;
-      console.log('editedNote');
-      console.log(editedNote);
       await this.$store.dispatch('updateNote', editedNote);
       this.loading = false;
       this.cancelDialog();

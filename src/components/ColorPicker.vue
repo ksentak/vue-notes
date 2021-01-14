@@ -35,6 +35,7 @@ export default {
     selected: String
   },
   data: () => ({
+    open: false,
     colors: {
       Default: 'none',
       Red: 'red accent-1',
@@ -46,16 +47,16 @@ export default {
       Pink: 'pink lighten-4'
     }
   }),
-  computed: {
-    open: {
-      get: function() {
-        return this.$store.getters.getShowColorMenu;
-      },
-      set: function(payload) {
-        this.$store.commit('setShowColorMenu', payload);
-      }
-    }
-  },
+  // computed: {
+  //   open: {
+  //     get: function() {
+  //       return this.$store.getters.getShowColorMenu;
+  //     },
+  //     set: function(payload) {
+  //       this.$store.commit('setShowColorMenu', payload);
+  //     }
+  //   }
+  // },
   methods: {
     selectedIcon(color, blank) {
       const defaultIcon = blank ? 'mdi-checkbox-blank-circle-outline' : 'mdi-checkbox-blank-circle';
