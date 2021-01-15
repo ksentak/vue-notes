@@ -71,6 +71,8 @@ export default {
       await this.$store.dispatch('updateNote', editedNote);
       this.loading = false;
       this.cancelDialog();
+      const payload = { open: true, text: 'Note Updated', color: 'success' };
+      this.changeSnackbar(payload);
     },
     async deleteNote() {
       this.deleteLoading = true;
@@ -78,6 +80,8 @@ export default {
       await this.$store.dispatch('discardNote', selectedNoteId);
       this.deleteLoading = false;
       this.cancelDialog();
+      const payload = { open: true, text: 'Note Deleted', color: 'error' };
+      this.changeSnackbar(payload);
     },
     cancelDialog() {
       this.$store.commit('setShowNoteDialog', false);
@@ -88,6 +92,9 @@ export default {
         value: color
       };
       this.$store.commit('setNoteField', newColor);
+    },
+    changeSnackbar(payload) {
+      this.$store.commit('showSnackbar', payload);
     }
   }
 };

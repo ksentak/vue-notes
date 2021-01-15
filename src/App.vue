@@ -1,13 +1,9 @@
 <template>
   <v-app>
-    <v-app-bar app color="amber" dark>
+    <v-app-bar app color="blue-grey lighten-2" dark>
       <div class="d-flex align-center">
         <h2>Vue Notes</h2>
       </div>
-
-      <v-spacer></v-spacer>
-
-      <!-- CAN ADD V-BTN HERE -->
     </v-app-bar>
 
     <v-main>
