@@ -1,24 +1,28 @@
-# vue-notes
+# Vue Notes
 
-## Project setup
-```
-npm install
-```
+- A site that is based off of Keep, Google's note-taking application. A user can jot down notes to serve as reminders. Notes possess total CRUD functionality.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+---
 
-### Compiles and minifies for production
-```
-npm run build
-```
+##### Deployed Application:
 
-### Lints and fixes files
-```
-npm run lint
-```
+https://vue-notes01.netlify.app
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+---
+
+![Screenshot](./public/assets/vueNotes.png)
+
+---
+
+##### Technologies Used:
+
+- Vue
+- Vuex
+- Vuetify
+- Firebase
+
+---
+
+##### Author
+
+Keaton Sentak - [Portfolio](https://keatonsentak.dev) | [GitHub](https://github.com/ksentak)
